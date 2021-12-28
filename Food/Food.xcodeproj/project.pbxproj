@@ -71,6 +71,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0FB72AE8277BD7D9001DC144 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		0FB72AE9277BD7E3001DC144 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0FB72AEA277BD7EA001DC144 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		0FB72AEB277BD7F9001DC144 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0FB72AEC277BD809001DC144 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		0FE684E1277A844300E6B83F = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +129,11 @@
 		0FE684EC277A844300E6B83F /* Food */ = {
 			isa = PBXGroup;
 			children = (
+				0FB72AEC277BD809001DC144 /* Repositories */,
+				0FB72AEB277BD7F9001DC144 /* Views */,
+				0FB72AEA277BD7EA001DC144 /* ViewModels */,
+				0FB72AE9277BD7E3001DC144 /* Models */,
+				0FB72AE8277BD7D9001DC144 /* Services */,
 				0FE684ED277A844300E6B83F /* FoodApp.swift */,
 				0FE684EF277A844300E6B83F /* ContentView.swift */,
 				0FE684F1277A844400E6B83F /* Assets.xcassets */,
