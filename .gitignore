@@ -88,5 +88,5 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
-APIConstants.swift
-spoonacular-Info.plist
+Food/Food/Constants/APIConstants.swift
+Food/spoonacular-Info.plist
