@@ -8,24 +8,26 @@
 import Foundation
 
 protocol RecipeViewModel: ObservableObject{
- func getRecipesDietPrimal() async
+    func getRecipes() async
 }
 
 @MainActor
 final class RecipeViewModelImpl: RecipeViewModel{
     @Published private(set) var recipes: [Recipe] = []
-    
-    //private let apiService: RecipeApiService
+    var diet: String
     private let repository: RecipeRepository
-    init(repository: RecipeRepository){
+
+    init(repository: RecipeRepository = RecipeRepositoryImpl(), diet: String){
         self.repository = repository
+        self.diet = diet
     }
     
-    func getRecipesDietPrimal() async{
+    func getRecipes() async{
         do{
-            self.recipes = try await repository.fetchRecipes()
+            self.recipes = try await repository.fetchRecipes(by: diet)
         }catch{
             print(error)
         }
     }
+    
 }

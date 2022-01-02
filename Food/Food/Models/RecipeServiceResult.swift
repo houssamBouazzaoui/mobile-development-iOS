@@ -14,4 +14,5 @@ struct RecipeServiceResult: Codable{
 struct Recipe: Codable, Identifiable {
     let id: Int
     var title: String
+    var image: String
 }

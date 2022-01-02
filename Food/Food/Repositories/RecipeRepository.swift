@@ -8,7 +8,8 @@
 import Foundation
 
 protocol RecipeRepository{
-    func fetchRecipes() async throws -> [Recipe]
+    func fetchRecipes(by diet: String) async throws -> [Recipe]
+    func fetchRecipeDetails(by id: String) async throws -> Recipe
 }
 
 final class RecipeRepositoryImpl: RecipeRepository{
@@ -18,13 +19,23 @@ final class RecipeRepositoryImpl: RecipeRepository{
         self.apiService = apiService
     }
     
-    func fetchRecipes() async throws -> [Recipe]{
+    func fetchRecipes(by diet: String) async throws -> [Recipe]{
         var recipes: [Recipe] = []
         do{
-            recipes = try await apiService.fetchRecipes()
+            recipes = try await apiService.fetchRecipes(by: diet)
         }catch{
             print(error)
         }
         return recipes
+    }
+    
+    func fetchRecipeDetails(by id: String) async throws -> Recipe {
+        var recipe: Recipe = Recipe(id:0,title:"",image:"")
+        do{
+            recipe = try await apiService.fetchRecipeDetails(by: id)
+        }catch{
+            print(error)
+        }
+        return recipe
     }
 }

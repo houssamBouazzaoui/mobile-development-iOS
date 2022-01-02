@@ -7,9 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F08A52F27812B270078A87A /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F08A52E27812B270078A87A /* Pacifico-Regular.ttf */; };
+		0F08A53727812D680078A87A /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08A53627812D680078A87A /* FontManager.swift */; };
+		0F08A53927812F970078A87A /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0F08A53827812F970078A87A /* OFL.txt */; };
 		0F810368277F8737000558FA /* spoonacular-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F810367277F8737000558FA /* spoonacular-Info.plist */; };
 		0F81036D277F9D74000558FA /* RecipeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F81036C277F9D74000558FA /* RecipeRepository.swift */; };
 		0F81036F277FAC60000558FA /* RecipeServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F81036E277FAC60000558FA /* RecipeServiceResult.swift */; };
+		0FC9C56427824053001EA23E /* RecipeDetailButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC9C56327824053001EA23E /* RecipeDetailButtonView.swift */; };
+		0FC9C566278243A1001EA23E /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC9C565278243A1001EA23E /* RecipeDetailView.swift */; };
+		0FC9C56A27824C2D001EA23E /* RecipeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC9C56927824C2D001EA23E /* RecipeDetailViewModel.swift */; };
+		0FC9C57027825594001EA23E /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC9C56F27825594001EA23E /* Utility.swift */; };
 		0FE684EE277A844300E6B83F /* FoodApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE684ED277A844300E6B83F /* FoodApp.swift */; };
 		0FE684F0277A844300E6B83F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE684EF277A844300E6B83F /* MainView.swift */; };
 		0FE684F2277A844400E6B83F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FE684F1277A844400E6B83F /* Assets.xcassets */; };
@@ -41,9 +48,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F08A52E27812B270078A87A /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pacifico-Regular.ttf"; path = "../../../../../../../Downloads/Pacifico/Pacifico-Regular.ttf"; sourceTree = "<group>"; };
+		0F08A53627812D680078A87A /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
+		0F08A53827812F970078A87A /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OFL.txt; path = ../../../../../../../Downloads/Pacifico/OFL.txt; sourceTree = "<group>"; };
 		0F810367277F8737000558FA /* spoonacular-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "spoonacular-Info.plist"; sourceTree = "<group>"; };
 		0F81036C277F9D74000558FA /* RecipeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRepository.swift; sourceTree = "<group>"; };
 		0F81036E277FAC60000558FA /* RecipeServiceResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeServiceResult.swift; sourceTree = "<group>"; };
+		0FC9C56327824053001EA23E /* RecipeDetailButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailButtonView.swift; sourceTree = "<group>"; };
+		0FC9C565278243A1001EA23E /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
+		0FC9C56927824C2D001EA23E /* RecipeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewModel.swift; sourceTree = "<group>"; };
+		0FC9C56F27825594001EA23E /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		0FE684EA277A844300E6B83F /* Food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Food.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FE684ED277A844300E6B83F /* FoodApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodApp.swift; sourceTree = "<group>"; };
 		0FE684EF277A844300E6B83F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -85,6 +99,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F08A52D27812A940078A87A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0F08A52E27812B270078A87A /* Pacifico-Regular.ttf */,
+				0F08A53827812F970078A87A /* OFL.txt */,
+				0F08A53627812D680078A87A /* FontManager.swift */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		0F81036B277F9D5E000558FA /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				0FE7B114277F413200BA7236 /* RecipeViewModel.swift */,
+				0FC9C56927824C2D001EA23E /* RecipeDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -122,8 +147,17 @@
 			children = (
 				0FE684EF277A844300E6B83F /* MainView.swift */,
 				0FE7B116277F417B00BA7236 /* RecipeView.swift */,
+				0FC9C565278243A1001EA23E /* RecipeDetailView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		0FC9C56227824042001EA23E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				0FC9C56327824053001EA23E /* RecipeDetailButtonView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		0FE684E1277A844300E6B83F = {
@@ -150,6 +184,8 @@
 		0FE684EC277A844300E6B83F /* Food */ = {
 			isa = PBXGroup;
 			children = (
+				0FC9C56227824042001EA23E /* Components */,
+				0F08A52D27812A940078A87A /* Fonts */,
 				0F81036B277F9D5E000558FA /* Repositories */,
 				0FE7B11E277F441500BA7236 /* Constants */,
 				0FB72AEB277BD7F9001DC144 /* Views */,
@@ -159,6 +195,7 @@
 				0FE684ED277A844300E6B83F /* FoodApp.swift */,
 				0FE684F1277A844400E6B83F /* Assets.xcassets */,
 				0FE684F3277A844400E6B83F /* Preview Content */,
+				0FC9C56F27825594001EA23E /* Utility.swift */,
 			);
 			path = Food;
 			sourceTree = "<group>";
@@ -300,7 +337,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F08A53927812F970078A87A /* OFL.txt in Resources */,
 				0FE684F5277A844400E6B83F /* Preview Assets.xcassets in Resources */,
+				0F08A52F27812B270078A87A /* Pacifico-Regular.ttf in Resources */,
 				0F810368277F8737000558FA /* spoonacular-Info.plist in Resources */,
 				0FE684F2277A844400E6B83F /* Assets.xcassets in Resources */,
 			);
@@ -329,8 +368,13 @@
 			files = (
 				0FE7B11D277F42D700BA7236 /* RecipeApiServiceImpl.swift in Sources */,
 				0F81036D277F9D74000558FA /* RecipeRepository.swift in Sources */,
+				0FC9C566278243A1001EA23E /* RecipeDetailView.swift in Sources */,
 				0FE7B115277F413200BA7236 /* RecipeViewModel.swift in Sources */,
 				0FE7B120277F443400BA7236 /* APIConstants.swift in Sources */,
+				0FC9C56A27824C2D001EA23E /* RecipeDetailViewModel.swift in Sources */,
+				0FC9C56427824053001EA23E /* RecipeDetailButtonView.swift in Sources */,
+				0FC9C57027825594001EA23E /* Utility.swift in Sources */,
+				0F08A53727812D680078A87A /* FontManager.swift in Sources */,
 				0F81036F277FAC60000558FA /* RecipeServiceResult.swift in Sources */,
 				0FE684F0277A844300E6B83F /* MainView.swift in Sources */,
 				0FE684EE277A844300E6B83F /* FoodApp.swift in Sources */,
