@@ -6,21 +6,24 @@
 //
 
 import Foundation
+
 protocol RecipeDetailViewModel: ObservableObject{
     func getRecipeDetails() async
 }
 
+@MainActor
 final class RecipeDetailViewModelImpl: RecipeDetailViewModel{
     
-    @Published private(set) var recipe: Recipe = Recipe(id: 0, title: "", image: "")
+    @Published private(set) var recipe: Recipe
     
-    var recipeId: String
+    var recipeId: Int
     
     private let repository: RecipeRepository
 
-    init(repository: RecipeRepository = RecipeRepositoryImpl(), recipeId: String){
+    init(repository: RecipeRepository = RecipeRepositoryImpl(), recipeId: Int){
         self.repository = repository
         self.recipeId = recipeId
+        self.recipe = Recipe(id:recipeId,title: "", image: "", summary:"")
     }
     
     func getRecipeDetails() async {

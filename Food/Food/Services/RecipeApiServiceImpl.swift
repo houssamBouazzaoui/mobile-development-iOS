@@ -9,7 +9,8 @@ import Foundation
 
 protocol RecipeApiService{
     func fetchRecipes(by diet: String) async throws -> [Recipe]
-    func fetchRecipeDetails(by id:String) async throws -> Recipe
+    func fetchRecipeDetails(by id: Int) async throws -> Recipe
+    func fetchRandomRecipes() async throws -> [Recipe]
 }
 
 final class RecipeApiServiceImpl: RecipeApiService{
@@ -34,11 +35,19 @@ final class RecipeApiServiceImpl: RecipeApiService{
         return decodedData.results
     }
     
-    func fetchRecipeDetails(by id: String) async throws -> Recipe {
+    func fetchRecipeDetails(by id: Int) async throws -> Recipe {
         let urlSession = URLSession.shared
-        let url = URL(string: APIConstants.baseUrl.appending("\(id)/information?includeNutrition=false"))
-        let (data, _) = try await urlSession.data(from:url!)
+        let url = URL(string:APIConstants.baseUrl.appending("\(id)/information?apiKey=\(APIConstants.apiKey)&includeNutrition=false"))
+        let (data,_) = try await urlSession.data(from:url!)
         let decodeData = try JSONDecoder().decode(Recipe.self, from: data)
         return decodeData
+    }
+    
+    func fetchRandomRecipes() async throws -> [Recipe]{
+        let urlSession = URLSession.shared
+        let url = URL(string:APIConstants.random)
+        let (data,_) = try await urlSession.data(from:url!)
+        let decodeData = try JSONDecoder().decode(RecipeServiceRandomResult.self, from: data)
+        return decodeData.recipes
     }
 }

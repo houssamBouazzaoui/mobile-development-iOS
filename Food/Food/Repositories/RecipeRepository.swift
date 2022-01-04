@@ -9,7 +9,8 @@ import Foundation
 
 protocol RecipeRepository{
     func fetchRecipes(by diet: String) async throws -> [Recipe]
-    func fetchRecipeDetails(by id: String) async throws -> Recipe
+    func fetchRecipeDetails(by id: Int) async throws -> Recipe
+    func fetchRandomRecipes() async throws -> [Recipe]
 }
 
 final class RecipeRepositoryImpl: RecipeRepository{
@@ -29,13 +30,22 @@ final class RecipeRepositoryImpl: RecipeRepository{
         return recipes
     }
     
-    func fetchRecipeDetails(by id: String) async throws -> Recipe {
-        var recipe: Recipe = Recipe(id:0,title:"",image:"")
+    func fetchRecipeDetails(by id: Int) async throws -> Recipe {
+        var recipe: Recipe = Recipe(id:id, title:"", image:"", summary:"")
         do{
             recipe = try await apiService.fetchRecipeDetails(by: id)
         }catch{
             print(error)
         }
         return recipe
+    }
+    func fetchRandomRecipes() async throws -> [Recipe] {
+        var recipes: [Recipe] = []
+        do{
+            recipes = try await apiService.fetchRandomRecipes()
+        }catch{
+            print(error)
+        }
+        return recipes
     }
 }
