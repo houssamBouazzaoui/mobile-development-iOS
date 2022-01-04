@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RecipeCard: View {
+    @State private var showRecipeDetailView = false
     var recipe: Recipe
     var body: some View {
         VStack{
@@ -46,6 +47,12 @@ struct RecipeCard: View {
                     startPoint: .top, endPoint: .bottom))
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .shadow(color: Color.black.opacity(0.3), radius: 15, x: 0, y: 10)
+        .onTapGesture {
+            showRecipeDetailView.toggle()
+        }.sheet(isPresented: $showRecipeDetailView){
+            RecipeDetailView(recipeId: recipe.id)
+            
+        }
         
     }
 }

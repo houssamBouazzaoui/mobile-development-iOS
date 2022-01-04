@@ -1,5 +1,5 @@
 //
-//  RecipeServiceResult.swift
+//  Recipe.swift
 //  Food
 //
 //  Created by Houssam Bouazzaoui on 31/12/2021.

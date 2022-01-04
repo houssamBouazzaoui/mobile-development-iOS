@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RecipeList: View {
-    @State private var showRecipeDetailView = false
+    
     var recipes: [Recipe]
     var body: some View {
         VStack{
@@ -23,13 +23,6 @@ struct RecipeList: View {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 160), spacing: 15)], spacing: 15){
                 ForEach(recipes){ recipe in
                     RecipeCard(recipe:recipe)
-                        .onTapGesture {
-                            showRecipeDetailView.toggle()
-                        }.sheet(isPresented: $showRecipeDetailView){
-                            RecipeDetailView(recipeId: recipe.id)
-                            
-                        }
-                    
                 }
                 
             }

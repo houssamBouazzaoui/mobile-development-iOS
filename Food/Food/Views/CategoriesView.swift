@@ -8,10 +8,23 @@
 import SwiftUI
 
 struct CategoriesView: View {
+    @ObservedObject private var categoryRecipesVM = CategoryRecipesViewModelImpl()
+    
     var body: some View {
         NavigationView{
-            Text("Categories")
-                .navigationTitle("Categories")
+            List{
+                ForEach(navCategory.allCases){ category in
+                    NavigationLink{
+                        ScrollView{
+                            RecipeList(recipes:Recipe.all)
+                        }
+                        .navigationTitle(category.rawValue)
+                    } label:{
+                        Text(category.rawValue)
+                    }
+                }
+            }
+            .navigationTitle("Categories")
         }
         .navigationViewStyle(.stack)
     }
