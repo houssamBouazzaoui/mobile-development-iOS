@@ -31,7 +31,7 @@ final class RecipeRepositoryImpl: RecipeRepository{
     }
     
     func fetchRecipeDetails(by id: Int) async throws -> Recipe {
-        var recipe: Recipe = Recipe(id:id, title:"", image:"", summary:"")
+        var recipe: Recipe = Recipe(id:id, title:"", image:"", summary:"",extendedIngredients: [], analyzedInstructions: [])
         do{
             recipe = try await apiService.fetchRecipeDetails(by: id)
         }catch{

@@ -43,26 +43,36 @@ struct RecipeDetailView: View {
                     .bold()
                     .multilineTextAlignment(.center)
                 
-                VStack(alignment: .leading, spacing: 20){
+                VStack(alignment: .leading, spacing: 30){
                     if !recipeDetailVM.recipe.summary.isEmpty{
                         Text(recipeDetailVM.recipe.summary)
                     }
-                    if !recipeDetailVM.recipe.summary.isEmpty{                    VStack(alignment: .leading, spacing: 20){
+                    if !recipeDetailVM.recipe.extendedIngredients.isEmpty{
+                        VStack(alignment: .leading, spacing: 10){
                             Text("Ingredients")
                                 .font(.headline)
-                            Text("Hier komen de ingrediënten")
+                            ForEach(recipeDetailVM.recipe.extendedIngredients){ ingredient in
+                                Text("- "+ingredient.nameClean)
+                            }
                         }
                     }
-                    if !recipeDetailVM.recipe.summary.isEmpty  {                  VStack(alignment: .leading, spacing: 20){
+                    if !recipeDetailVM.recipe.analyzedInstructions.isEmpty  {
+                        VStack(alignment: .leading, spacing: 20){
                             Text("Directions")
                                 .font(.headline)
-                            Text("Hoe moet je dit maken")
+                            ForEach(0..<recipeDetailVM.recipe.analyzedInstructions.count, id: \.self){ instruction in
+                                ForEach(0..<recipeDetailVM.recipe.analyzedInstructions[instruction].steps.count, id: \.self){ step in
+                                    Text("Step "+String(recipeDetailVM.recipe.analyzedInstructions[instruction].steps[step].number))
+                                        .font(.headline)
+                                    Text(recipeDetailVM.recipe.analyzedInstructions[instruction].steps[step].step)
+                                }
+                            }
                         }
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .padding(.horizontal)
+            .padding(.horizontal,40)
         }
         .ignoresSafeArea(.container, edges: .top)
         .task {
@@ -73,6 +83,6 @@ struct RecipeDetailView: View {
 
 struct RecipeDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeDetailView(recipeId: 0)
+        RecipeDetailView(recipeId:716426)
     }
 }

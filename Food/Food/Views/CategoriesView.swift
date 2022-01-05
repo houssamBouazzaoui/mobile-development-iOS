@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct CategoriesView: View {
-    @ObservedObject private var categoryRecipesVM = CategoryRecipesViewModelImpl()
     
+    @ObservedObject private var categoryRecipeVM = CategoryRecipesViewModelImpl()
+
     var body: some View {
         NavigationView{
             List{
                 ForEach(navCategory.allCases){ category in
                     NavigationLink{
-                        ScrollView{
-                            RecipeList(recipes:Recipe.all)
+                        /*ScrollView{
+                            RecipeList(recipes: Recipe.all)
                         }
-                        .navigationTitle(category.rawValue)
+                        .navigationTitle(category.rawValue)*/
+                        CategoryRecipesView(category: category)
                     } label:{
                         Text(category.rawValue)
                     }

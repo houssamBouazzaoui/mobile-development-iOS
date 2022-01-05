@@ -23,7 +23,7 @@ final class RecipeDetailViewModelImpl: RecipeDetailViewModel{
     init(repository: RecipeRepository = RecipeRepositoryImpl(), recipeId: Int){
         self.repository = repository
         self.recipeId = recipeId
-        self.recipe = Recipe(id:recipeId,title: "", image: "", summary:"")
+        self.recipe = Recipe(id:recipeId,title: "", image: "", summary:"", extendedIngredients: [], analyzedInstructions: [])
     }
     
     func getRecipeDetails() async {
@@ -33,6 +33,4 @@ final class RecipeDetailViewModelImpl: RecipeDetailViewModel{
             print(error)
         }
     }
-    
-    
 }
