@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
 
 protocol RecipeApiService{
     func fetchRecipes(by diet: String) async throws -> [Recipe]
     func fetchRecipeDetails(by id: Int) async throws -> Recipe
     func fetchRandomRecipes() async throws -> [Recipe]
+    func fetchFavoriteRecipes(recipeIds:[String]) async throws -> [Recipe]
 }
 
 final class RecipeApiServiceImpl: RecipeApiService{
@@ -50,4 +52,17 @@ final class RecipeApiServiceImpl: RecipeApiService{
         let decodeData = try JSONDecoder().decode(RecipeServiceRandomResult.self, from: data)
         return decodeData.recipes
     }
+    
+    func fetchFavoriteRecipes(recipeIds:[String]) async throws -> [Recipe]{
+        let urlSession = URLSession.shared
+        var apiUrl: String = ""
+        recipeIds.forEach{ id in
+            apiUrl.append("\(id),")
+        }
+        let url = URL(string: APIConstants.favorites.appending("\(apiUrl)"))
+        let (data,_) = try await urlSession.data(from:url!)
+        let decodeData = try JSONDecoder().decode([Recipe].self, from: data)
+        return decodeData
+    }
+    
 }

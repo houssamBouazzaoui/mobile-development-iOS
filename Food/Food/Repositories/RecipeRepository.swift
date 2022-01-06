@@ -11,6 +11,7 @@ protocol RecipeRepository{
     func fetchRecipes(by diet: String) async throws -> [Recipe]
     func fetchRecipeDetails(by id: Int) async throws -> Recipe
     func fetchRandomRecipes() async throws -> [Recipe]
+    func fetchFavoriteRecipes(recipeIds:[String]) async throws -> [Recipe]
 }
 
 final class RecipeRepositoryImpl: RecipeRepository{
@@ -43,6 +44,16 @@ final class RecipeRepositoryImpl: RecipeRepository{
         var recipes: [Recipe] = []
         do{
             recipes = try await apiService.fetchRandomRecipes()
+        }catch{
+            print(error)
+        }
+        return recipes
+    }
+    
+    func fetchFavoriteRecipes(recipeIds:[String]) async throws -> [Recipe]{
+        var recipes:[Recipe] = []
+        do{
+            recipes = try await apiService.fetchFavoriteRecipes(recipeIds: recipeIds)
         }catch{
             print(error)
         }

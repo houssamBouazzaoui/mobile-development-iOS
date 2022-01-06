@@ -10,7 +10,7 @@ import SwiftUI
 struct RecipeDetailView: View {
     var recipeId: Int
     @ObservedObject private var recipeDetailVM = RecipeDetailViewModelImpl(recipeId: 0)
-    
+    @EnvironmentObject var favorites: Favorites
     init(recipeId: Int){
         self.recipeId = recipeId
         recipeDetailVM.recipeId = recipeId
@@ -22,7 +22,23 @@ struct RecipeDetailView: View {
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    
+                    .overlay(alignment: .bottom){
+                        Image(systemName: favorites.contains(recipeId) ? "heart.fill" : "heart")
+                            .font(.system(size:30))
+                            .foregroundColor(.red)
+                            .shadow(color: .black, radius: 3, x: 0, y: 0)
+                            .frame(maxWidth: UIScreen.screenWidth,alignment: .bottomTrailing)
+                            .padding()
+                            .onTapGesture{
+                                if self.favorites.contains(recipeId) {
+                                    Print("DEL:",recipeId)
+                                    self.favorites.remove(recipeId)
+                                } else {
+                                    Print("ADD:",recipeId)
+                                    self.favorites.add(recipeId)
+                                }
+                            }
+                    }
             }placeholder:{
                 Image(systemName:"photo")
                     .resizable()
@@ -30,7 +46,21 @@ struct RecipeDetailView: View {
                     .frame(width: 100, height: 100, alignment: .center )
                     .foregroundColor(.white).opacity(0.7)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    
+                    .overlay(alignment: .bottom){
+                        Image(systemName: favorites.contains(recipeId) ? "heart.fill" : "heart")
+                            .font(.system(size: 30))
+                            .foregroundColor(.red)
+                            .shadow(color: .black, radius: 3, x: 0, y: 0)
+                            .frame(maxWidth: .infinity, alignment: .bottomTrailing)
+                            .padding()
+                            .onTapGesture{
+                                if self.favorites.contains(recipeId) {
+                                          self.favorites.remove(recipeId)
+                                      } else {
+                                          self.favorites.add(recipeId)
+                                      }
+                            }
+                    }
             }
             .frame(height: 300)
             .background(LinearGradient(gradient: Gradient(

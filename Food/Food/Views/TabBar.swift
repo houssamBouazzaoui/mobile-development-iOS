@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct TabBar: View {
-    var body: some View {
+    @ObservedObject var favorites = Favorites()
+        var body: some View {
         TabView{
             HomeView()
                 .tabItem{
@@ -24,7 +25,7 @@ struct TabBar: View {
                 .tabItem{
                     Label("Favorites", systemImage: "heart")
                 }
-        }
+        }.environmentObject(favorites)
     }
 }
 

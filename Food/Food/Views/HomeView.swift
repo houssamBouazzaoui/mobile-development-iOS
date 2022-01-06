@@ -9,19 +9,19 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject private var homeVM = HomeViewModelImpl()
-    
     var body: some View {
             NavigationView{
                 ScrollView{
-                    RecipeList(recipes: homeVM.recipes)
+                    //RecipeList(recipes: homeVM.recipes)
                 }
                 .navigationTitle("Recipes")
                 .task {
-                    await homeVM.getRandomRecipes()
+                    //await homeVM.getRandomRecipes()
                 }
                 
             }
             .navigationViewStyle(.stack)
+        
     }
 }
     

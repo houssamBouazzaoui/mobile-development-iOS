@@ -18,6 +18,8 @@
 		0F0F43312783B35600E46036 /* RecipeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F43302783B35600E46036 /* RecipeCard.swift */; };
 		0F0F43332783B9AE00E46036 /* RecipeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F43322783B9AE00E46036 /* RecipeList.swift */; };
 		0F0F43352783D1DF00E46036 /* navCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F43342783D1DF00E46036 /* navCategory.swift */; };
+		0F66FBA3278664BE00B5D53E /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F66FBA2278664BE00B5D53E /* Favorites.swift */; };
+		0F66FBA527866F2400B5D53E /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F66FBA427866F2400B5D53E /* FavoritesViewModel.swift */; };
 		0F810368277F8737000558FA /* spoonacular-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F810367277F8737000558FA /* spoonacular-Info.plist */; };
 		0F81036D277F9D74000558FA /* RecipeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F81036C277F9D74000558FA /* RecipeRepository.swift */; };
 		0F81036F277FAC60000558FA /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F81036E277FAC60000558FA /* Recipe.swift */; };
@@ -66,6 +68,8 @@
 		0F0F43302783B35600E46036 /* RecipeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCard.swift; sourceTree = "<group>"; };
 		0F0F43322783B9AE00E46036 /* RecipeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeList.swift; sourceTree = "<group>"; };
 		0F0F43342783D1DF00E46036 /* navCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = navCategory.swift; sourceTree = "<group>"; };
+		0F66FBA2278664BE00B5D53E /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
+		0F66FBA427866F2400B5D53E /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		0F810367277F8737000558FA /* spoonacular-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "spoonacular-Info.plist"; sourceTree = "<group>"; };
 		0F81036C277F9D74000558FA /* RecipeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRepository.swift; sourceTree = "<group>"; };
 		0F81036E277FAC60000558FA /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
@@ -123,6 +127,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		0F66FB9F2786648D00B5D53E /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				0F66FBA2278664BE00B5D53E /* Favorites.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
 		0F81036B277F9D5E000558FA /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +166,7 @@
 				0FE7B114277F413200BA7236 /* CategoryRecipesViewModel.swift */,
 				0FC9C56927824C2D001EA23E /* RecipeDetailViewModel.swift */,
 				0F0F432E2783B0FB00E46036 /* HomeViewModel.swift */,
+				0F66FBA427866F2400B5D53E /* FavoritesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -205,6 +218,7 @@
 		0FE684EC277A844300E6B83F /* Food */ = {
 			isa = PBXGroup;
 			children = (
+				0F66FB9F2786648D00B5D53E /* UserDefaults */,
 				0FC9C56227824042001EA23E /* Components */,
 				0F08A52D27812A940078A87A /* Fonts */,
 				0F81036B277F9D5E000558FA /* Repositories */,
@@ -399,12 +413,14 @@
 				0FE7B120277F443400BA7236 /* APIConstants.swift in Sources */,
 				0F0F43312783B35600E46036 /* RecipeCard.swift in Sources */,
 				0FC9C56A27824C2D001EA23E /* RecipeDetailViewModel.swift in Sources */,
+				0F66FBA527866F2400B5D53E /* FavoritesViewModel.swift in Sources */,
 				0FC7132827852A1A00421BBD /* CategoryRecipesView.swift in Sources */,
 				0F0F43292783A5D700E46036 /* CategoriesView.swift in Sources */,
 				0FC9C57027825594001EA23E /* Utility.swift in Sources */,
 				0F0F432D2783AAA900E46036 /* MainView.swift in Sources */,
 				0F08A53727812D680078A87A /* FontManager.swift in Sources */,
 				0F81036F277FAC60000558FA /* Recipe.swift in Sources */,
+				0F66FBA3278664BE00B5D53E /* Favorites.swift in Sources */,
 				0FE684F0277A844300E6B83F /* HomeView.swift in Sources */,
 				0FE684EE277A844300E6B83F /* FoodApp.swift in Sources */,
 			);
