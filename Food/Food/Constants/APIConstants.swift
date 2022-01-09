@@ -16,7 +16,7 @@ enum APIConstants{
     static let ketogenic = "\(baseUrl)complexSearch?apiKey=\(apiKey)&fillIngredients=true&addRecipeInformation=true&diet=keotgenic&number=\(amountofRecipes)"
     static let random = "\(baseUrl)random?apiKey=\(apiKey)&number=10"
     static var favorites = "\(baseUrl)informationBulk?apiKey=\(apiKey)&ids="
-    private static let amountofRecipes: Int = 1
+    private static let amountofRecipes: Int = 10
     
     static let apiKey: String = {
             guard let filePath = Bundle.main.path(forResource: "spoonacular-Info", ofType: "plist")else{
