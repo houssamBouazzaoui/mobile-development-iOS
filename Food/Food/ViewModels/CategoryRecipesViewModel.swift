@@ -14,18 +14,17 @@ protocol CategoryRecipesViewModel: ObservableObject{
 @MainActor
 final class CategoryRecipesViewModelImpl: CategoryRecipesViewModel{
     @Published private(set) var recipes: [Recipe] = []
-    private let repository: RecipeRepository
+    private let service: RecipeApiService
   
    
     
-    init(repository: RecipeRepository = RecipeRepositoryImpl()){
-        self.repository = repository
+    init(service: RecipeApiService = RecipeApiServiceImpl()){
+        self.service = service
     }
     
     func getRecipesByDiet(by diet: String) async{
         do{
-            print("DIET: "+diet)
-            self.recipes = try await repository.fetchRecipes(by: diet)
+            self.recipes = try await service.fetchRecipes(by: diet)
         }catch{
             print(error)
         }

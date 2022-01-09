@@ -11,17 +11,35 @@ struct HomeView: View {
     @ObservedObject private var homeVM = HomeViewModelImpl()
     var body: some View {
             NavigationView{
-                ScrollView{
-                    //RecipeList(recipes: homeVM.recipes)
-                }
-                .navigationTitle("Recipes")
-                .task {
-                    //await homeVM.getRandomRecipes()
-                }
                 
+                    switch homeVM.state{
+                    case .success(let data):
+                        ScrollView{
+                            RecipeList(recipes: data)
+                                .navigationTitle("Recipes")
+                        }
+                    case .loading:
+                        ProgressView()
+                    default:
+                        Text("Something went wrong")
+                    }
             }
             .navigationViewStyle(.stack)
-        
+            .task {
+                await homeVM.getRandomRecipes()
+            }.alert("Error",
+                    isPresented: $homeVM.hasError,
+                    presenting: homeVM.state){ detail in
+                Button("Retry"){
+                    Task{
+                        await homeVM.getRandomRecipes()
+                    }
+                }
+            } message: { detail in
+                if case let .failed(error) = detail{
+                    Text(error.localizedDescription)
+                }
+            }
     }
 }
     

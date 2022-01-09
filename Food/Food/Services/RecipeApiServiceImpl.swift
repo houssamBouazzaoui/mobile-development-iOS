@@ -17,6 +17,11 @@ protocol RecipeApiService{
 
 final class RecipeApiServiceImpl: RecipeApiService{
     
+    enum RecipeApiServiceError: Error{
+        case failed
+        case failedToDecode
+        case invalidStatusCode
+    }
     func fetchRecipes(by diet: String) async throws -> [Recipe] {
         let urlSession = URLSession.shared
         
@@ -32,7 +37,13 @@ final class RecipeApiServiceImpl: RecipeApiService{
         }
         
         
-        let (data, _) = try await urlSession.data(from: url!)
+        let (data, response) = try await urlSession.data(from: url!)
+        
+        guard let response = response as? HTTPURLResponse,
+              response.statusCode == 200 else{
+                  throw RecipeApiServiceError.invalidStatusCode
+        }
+        
         let decodedData = try JSONDecoder().decode(RecipeServiceResult.self, from: data)
         return decodedData.results
     }

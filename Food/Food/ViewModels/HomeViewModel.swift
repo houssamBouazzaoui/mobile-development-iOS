@@ -13,19 +13,30 @@ protocol HomeViewModel: ObservableObject{
 
 @MainActor
 final class HomeViewModelImpl: HomeViewModel{
-    @Published private(set) var recipes: [Recipe] = []
     
-    private let repository: RecipeRepository
+    enum State{
+        case notAvailable
+        case loading
+        case success(data:[Recipe])
+        case failed(error:Error)
+    }
+    @Published private(set) var state: State = .notAvailable
+    @Published  var hasError: Bool = false
+    private let service: RecipeApiService
 
-    init(repository: RecipeRepository = RecipeRepositoryImpl()){
-        self.repository = repository
+    init(service: RecipeApiService = RecipeApiServiceImpl()){
+        self.service = service
     }
 
     func getRandomRecipes() async {
+        self.state = .loading
+        self.hasError = false
         do{
-            self.recipes = try await repository.fetchRandomRecipes()
+            let recipes = try await service.fetchRandomRecipes()
+            self.state = .success(data: recipes)
         }catch{
-            print(error)
+            self.state = .failed(error: error)
+            self.hasError = true
         }
     }
 }

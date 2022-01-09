@@ -31,10 +31,8 @@ struct RecipeDetailView: View {
                             .padding()
                             .onTapGesture{
                                 if self.favorites.contains(recipeId) {
-                                    Print("DEL:",recipeId)
                                     self.favorites.remove(recipeId)
                                 } else {
-                                    Print("ADD:",recipeId)
                                     self.favorites.add(recipeId)
                                 }
                             }

@@ -18,17 +18,17 @@ final class RecipeDetailViewModelImpl: RecipeDetailViewModel{
     
     var recipeId: Int
     
-    private let repository: RecipeRepository
+    private let service: RecipeApiService
 
-    init(repository: RecipeRepository = RecipeRepositoryImpl(), recipeId: Int){
-        self.repository = repository
+    init(service: RecipeApiService = RecipeApiServiceImpl(), recipeId: Int){
+        self.service = service
         self.recipeId = recipeId
         self.recipe = Recipe(id:recipeId,title: "", image: "", summary:"", extendedIngredients: [], analyzedInstructions: [])
     }
     
     func getRecipeDetails() async {
         do{
-            self.recipe = try await repository.fetchRecipeDetails(by: recipeId)
+            self.recipe = try await service.fetchRecipeDetails(by: recipeId)
         }catch{
             print(error)
         }
