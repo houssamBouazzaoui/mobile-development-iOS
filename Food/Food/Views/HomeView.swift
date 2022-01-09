@@ -11,7 +11,6 @@ struct HomeView: View {
     @ObservedObject private var homeVM = HomeViewModelImpl()
     var body: some View {
             NavigationView{
-                
                     switch homeVM.state{
                     case .success(let data):
                         ScrollView{
@@ -21,7 +20,7 @@ struct HomeView: View {
                     case .loading:
                         ProgressView()
                     default:
-                        Text("Something went wrong")
+                        EmptyView()
                     }
             }
             .navigationViewStyle(.stack)
@@ -34,6 +33,9 @@ struct HomeView: View {
                     Task{
                         await homeVM.getRandomRecipes()
                     }
+                }
+                Button("Cancel"){
+                    
                 }
             } message: { detail in
                 if case let .failed(error) = detail{

@@ -13,8 +13,10 @@ protocol FavoritesViewModel: ObservableObject{
 
 @MainActor
 final class FavoritesViewModelImpl: FavoritesViewModel{
-    @Published var recipes:[Recipe] = []
     
+    @Published private(set) var state: StateResponse<[Recipe]> = .notAvailable
+    @Published  var hasError: Bool = false
+
     var recipeIds: [String]
     private let service: RecipeApiService
     
@@ -24,10 +26,14 @@ final class FavoritesViewModelImpl: FavoritesViewModel{
     }
     
     func getFavoriteRecipes() async{
+        self.state = .loading
+        self.hasError = false
         do{
-            self.recipes = try await service.fetchFavoriteRecipes(recipeIds: recipeIds)
+            let recipes = try await service.fetchFavoriteRecipes(recipeIds: recipeIds)
+            self.state = .success(data: recipes)
         }catch{
-            print(error)
+            self.state = .failed(error: error)
+            self.hasError = true
         }
     }
 }

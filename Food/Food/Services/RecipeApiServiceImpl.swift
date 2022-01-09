@@ -42,7 +42,7 @@ final class RecipeApiServiceImpl: RecipeApiService{
         guard let response = response as? HTTPURLResponse,
               response.statusCode == 200 else{
                   throw RecipeApiServiceError.invalidStatusCode
-        }
+              }
         
         let decodedData = try JSONDecoder().decode(RecipeServiceResult.self, from: data)
         return decodedData.results
@@ -51,7 +51,13 @@ final class RecipeApiServiceImpl: RecipeApiService{
     func fetchRecipeDetails(by id: Int) async throws -> Recipe {
         let urlSession = URLSession.shared
         let url = URL(string:APIConstants.baseUrl.appending("\(id)/information?apiKey=\(APIConstants.apiKey)&includeNutrition=false"))
-        let (data,_) = try await urlSession.data(from:url!)
+        let (data,response) = try await urlSession.data(from:url!)
+        
+        guard let response = response as? HTTPURLResponse,
+              response.statusCode == 200 else{
+                  throw RecipeApiServiceError.invalidStatusCode
+              }
+        
         let decodeData = try JSONDecoder().decode(Recipe.self, from: data)
         return decodeData
     }
@@ -59,7 +65,13 @@ final class RecipeApiServiceImpl: RecipeApiService{
     func fetchRandomRecipes() async throws -> [Recipe]{
         let urlSession = URLSession.shared
         let url = URL(string:APIConstants.random)
-        let (data,_) = try await urlSession.data(from:url!)
+        let (data,response) = try await urlSession.data(from:url!)
+        
+        guard let response = response as? HTTPURLResponse,
+              response.statusCode == 200 else{
+                  throw RecipeApiServiceError.invalidStatusCode
+        }
+        
         let decodeData = try JSONDecoder().decode(RecipeServiceRandomResult.self, from: data)
         return decodeData.recipes
     }
@@ -71,7 +83,13 @@ final class RecipeApiServiceImpl: RecipeApiService{
             apiUrl.append("\(id),")
         }
         let url = URL(string: APIConstants.favorites.appending("\(apiUrl)"))
-        let (data,_) = try await urlSession.data(from:url!)
+        let (data,response) = try await urlSession.data(from:url!)
+        
+        guard let response = response as? HTTPURLResponse,
+              response.statusCode == 200 else{
+                  throw RecipeApiServiceError.invalidStatusCode
+        }
+
         let decodeData = try JSONDecoder().decode([Recipe].self, from: data)
         return decodeData
     }

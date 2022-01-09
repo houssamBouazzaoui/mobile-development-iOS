@@ -13,20 +13,26 @@ protocol CategoryRecipesViewModel: ObservableObject{
 
 @MainActor
 final class CategoryRecipesViewModelImpl: CategoryRecipesViewModel{
-    @Published private(set) var recipes: [Recipe] = []
+    
+    @Published private(set) var state: StateResponse<[Recipe]> = .notAvailable
+    @Published  var hasError: Bool = false
+
     private let service: RecipeApiService
   
-   
     
     init(service: RecipeApiService = RecipeApiServiceImpl()){
         self.service = service
     }
     
     func getRecipesByDiet(by diet: String) async{
+        self.state = .loading
+        self.hasError = false
         do{
-            self.recipes = try await service.fetchRecipes(by: diet)
+            let recipes = try await service.fetchRecipes(by: diet)
+            self.state = .success(data: recipes)
         }catch{
-            print(error)
+            self.state = .failed(error: error)
+            self.hasError = true
         }
     }
 }

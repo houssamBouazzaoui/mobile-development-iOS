@@ -16,22 +16,45 @@ struct FavoritesView: View {
     }
     
     var body: some View {
-        NavigationView{
-            ScrollView{
-                if !favoritesVM.recipes.isEmpty {
-                    RecipeList(recipes: favoritesVM.recipes)
-                }else{
-                    Text("You have no favorite recipes")
-                        .padding()
+        
+        if(!favoritesVM.recipeIds.isEmpty){
+            NavigationView{
+                switch favoritesVM.state{
+                    case .success(let recipes):
+                        ScrollView{
+                            RecipeList(recipes: recipes)
+                                .navigationTitle("Recipes")
+                        }
+                        .navigationTitle("Favorites")
+                    case .loading:
+                        ProgressView()
+                    default:
+                        EmptyView()
                 }
             }
-            .navigationTitle("Favorites")
+            .navigationViewStyle(.stack)
+            .environmentObject(favorites)
             .task {
                 await favoritesVM.getFavoriteRecipes()
+            }.alert("Error",
+                    isPresented: $favoritesVM.hasError,
+                    presenting: favoritesVM.state){ detail in
+                Button("Retry"){
+                    Task{
+                        await favoritesVM.getFavoriteRecipes()
+                    }
+                }
+                Button("Cancel"){
+                    
+                }
+            } message: { detail in
+                if case let .failed(error) = detail{
+                    Text(error.localizedDescription)
+                }
             }
+        }else{
+            Text("You have no favorite recipes")
         }
-        .navigationViewStyle(.stack)
-        .environmentObject(favorites)
     }
 }
 

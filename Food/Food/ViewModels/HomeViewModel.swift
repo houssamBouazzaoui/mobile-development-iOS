@@ -13,14 +13,8 @@ protocol HomeViewModel: ObservableObject{
 
 @MainActor
 final class HomeViewModelImpl: HomeViewModel{
-    
-    enum State{
-        case notAvailable
-        case loading
-        case success(data:[Recipe])
-        case failed(error:Error)
-    }
-    @Published private(set) var state: State = .notAvailable
+
+    @Published private(set) var state: StateResponse<[Recipe]> = .notAvailable
     @Published  var hasError: Bool = false
     private let service: RecipeApiService
 

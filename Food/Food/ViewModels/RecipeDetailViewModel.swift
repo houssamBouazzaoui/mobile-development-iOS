@@ -14,8 +14,8 @@ protocol RecipeDetailViewModel: ObservableObject{
 @MainActor
 final class RecipeDetailViewModelImpl: RecipeDetailViewModel{
     
-    @Published private(set) var recipe: Recipe
-    
+    @Published private(set) var state: StateResponse<Recipe> = .notAvailable
+    @Published  var hasError: Bool = false
     var recipeId: Int
     
     private let service: RecipeApiService
@@ -23,14 +23,17 @@ final class RecipeDetailViewModelImpl: RecipeDetailViewModel{
     init(service: RecipeApiService = RecipeApiServiceImpl(), recipeId: Int){
         self.service = service
         self.recipeId = recipeId
-        self.recipe = Recipe(id:recipeId,title: "", image: "", summary:"", extendedIngredients: [], analyzedInstructions: [])
     }
     
     func getRecipeDetails() async {
+        self.state = .loading
+        self.hasError = false
         do{
-            self.recipe = try await service.fetchRecipeDetails(by: recipeId)
+            let recipe = try await service.fetchRecipeDetails(by: recipeId)
+            self.state = .success(data: recipe)
         }catch{
-            print(error)
+            self.state = .failed(error: error)
+            self.hasError = true
         }
     }
 }
