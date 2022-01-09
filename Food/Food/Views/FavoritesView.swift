@@ -17,7 +17,7 @@ struct FavoritesView: View {
     
     var body: some View {
         
-        if(!favoritesVM.recipeIds.isEmpty){
+        if(!favorites.getRecipesIds().isEmpty){
             NavigationView{
                 switch favoritesVM.state{
                     case .success(let recipes):

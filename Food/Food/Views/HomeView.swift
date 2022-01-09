@@ -20,7 +20,7 @@ struct HomeView: View {
                     case .loading:
                         ProgressView()
                     default:
-                        EmptyView()
+                        Text("Something went wrong")
                     }
             }
             .navigationViewStyle(.stack)
@@ -39,6 +39,7 @@ struct HomeView: View {
                 }
             } message: { detail in
                 if case let .failed(error) = detail{
+                    Print("ER",error)
                     Text(error.localizedDescription)
                 }
             }

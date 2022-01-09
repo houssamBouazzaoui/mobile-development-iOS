@@ -114,8 +114,8 @@ struct RecipeDetailView: View {
                 .font(.largeTitle)
                 .bold()
                 .multilineTextAlignment(.center)
-            
-            VStack(alignment: .leading, spacing: 30){
+           
+            VStack(alignment: .leading, spacing: 20){
                 if !recipe.summary.isEmpty{
                     Text(recipe.summary)
                 }
@@ -124,7 +124,8 @@ struct RecipeDetailView: View {
                         Text("Ingredients")
                             .font(.headline)
                         ForEach(recipe.extendedIngredients){ ingredient in
-                            Text("- "+ingredient.nameClean)
+                            let ingredientName = ingredient.nameClean ?? ingredient.name
+                            Text("- "+ingredientName)
                         }
                     }
                 }
